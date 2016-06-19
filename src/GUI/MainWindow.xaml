@@ -1,0 +1,43 @@
+﻿<Window xmlns:Toolkit="clr-namespace:SearchAThing.Wpf.Toolkit;assembly=SearchAThing.Wpf.Toolkit" 
+        xmlns:GUI1="clr-namespace:SearchAThing.Sci.GUI.Examples.GUI" 
+        xmlns:GUI="clr-namespace:SearchAThing.Sci.GUI;assembly=SearchAThing.Sci.GUI" 
+        x:Class="SearchAThing.Sci.GUI.Examples.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SearchAThing.Sci.GUI.Examples"
+        mc:Ignorable="d"        
+        Loaded="Window_Loaded"
+        Title="SearchAThing.Sci.GUI.Examples" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0" Margin="10,10,10,0">
+            <Toolkit:DetachableTabItem Header="DB Config">
+                <GUI1:Config Margin="5"/>
+            </Toolkit:DetachableTabItem>
+
+            <Toolkit:DetachableTabItem Header="Project" IsEnabled="{Binding Ref.DBConnectionAvailable, Source={StaticResource GlobalRef}}">
+                <GUI1:ProjectData Margin="5" DataContext="{Binding Ref.OpenedProject, Source={StaticResource GlobalRef}}" />
+            </Toolkit:DetachableTabItem>
+        </TabControl>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="{Binding Ref.Status.Status, Source={StaticResource GlobalRef}}" Margin="10,5,10,10"/>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="10,5,10,10">
+                <TextBlock Text="DB: "/>
+                <TextBlock Text="{Binding Ref.DBConnectionStatus, Source={StaticResource GlobalRef}}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

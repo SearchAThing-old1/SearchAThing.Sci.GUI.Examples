@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SearchAThing.Sci.GUI.Examples</RootNamespace>
-    <AssemblyName>SearchAThing.Sci.GUI.Examples</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AssemblyName>SearchAThing.Sci.GUI.Examples.Example01</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,7 +36,24 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=2.2.4.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Bson.2.2.4\lib\net45\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=2.2.4.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.2.2.4\lib\net45\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=2.2.4.26, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.2.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Polly, Version=4.2.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Polly.4.2.4\lib\net45\Polly.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,15 +73,56 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="MainWindow.xaml">
+    <Page Include="GUI\ProjectData.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="GUI\Config.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUI\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\Attributes\CollectionName.cs">
+      <Link>Logic\Repository.Mongo\Attributes\CollectionName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\Attributes\ConnectionName.cs">
+      <Link>Logic\Repository.Mongo\Attributes\ConnectionName.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\Database.cs">
+      <Link>Logic\Repository.Mongo\Database.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\Entity.cs">
+      <Link>Logic\Repository.Mongo\Entity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\IEntity.cs">
+      <Link>Logic\Repository.Mongo\IEntity.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\IRepository.cs">
+      <Link>Logic\Repository.Mongo\IRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\..\MongoRepository\Repository.Mongo\Repository.cs">
+      <Link>Logic\Repository.Mongo\Repository.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="GUI\ProjectData.xaml.cs">
+      <DependentUpon>ProjectData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Config.xaml.cs">
+      <DependentUpon>Config.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Logic\AppSettings.cs" />
+    <Compile Include="Logic\Project.Global.cs" />
+    <Compile Include="Logic\Database.Global.cs" />
+    <Compile Include="Logic\GlobalRef.cs" />
+    <Compile Include="Logic\Global.cs" />
+    <Compile Include="Entity\Project.cs" />
+    <Compile Include="GUI\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
@@ -86,6 +145,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -107,6 +167,10 @@
     <ProjectReference Include="..\..\SearchAThing.Sci\src\SearchAThing.Sci.csproj">
       <Project>{f9d7f0ee-d4ff-4455-87be-08539d2d1982}</Project>
       <Name>SearchAThing.Sci</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SearchAThing.Wpf.Toolkit\src\SearchAThing.Wpf.Toolkit\SearchAThing.Wpf.Toolkit.csproj">
+      <Project>{a413694a-6ee9-4c92-ab7a-c7ee8c92a2ff}</Project>
+      <Name>SearchAThing.Wpf.Toolkit</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
