@@ -11,3 +11,9 @@ Project data will be saved in localhost ( need mongo db server, just run a mongo
 Invalid measures are recognized through the converter.
 
 ![TextMeasureConverter](doc/images/Example01_measure_text_converter.PNG)
+
+### Mongo serialization
+
+Serialization of the Measure.BsonValue field:
+
+![MongoSerialization](doc/images/Example01_mongo_saved_data.PNG)
