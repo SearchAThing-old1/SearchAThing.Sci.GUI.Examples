@@ -23,21 +23,18 @@
 */
 #endregion
 
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using Repository.Mongo;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SearchAThing.Sci.GUI.Examples
 {
 
     [BsonIgnoreExtraElements]
-    public class Project : Entity, INotifyPropertyChanged
+    public class Project : INotifyPropertyChanged
     {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
 
         #region INotifyPropertyChanged [propce]       
         public event PropertyChangedEventHandler PropertyChanged;
