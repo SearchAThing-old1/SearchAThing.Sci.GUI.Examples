@@ -23,6 +23,8 @@
 */
 #endregion
 
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -33,17 +35,48 @@ namespace SearchAThing.Sci.GUI.Examples.GUI
     public partial class ProjectData : UserControl
     {
         Global global { get { return Global.Instance; } }
+    
+        #region Obc [propf]
+        ObservableCollection<MeasureVar> _Obc;
+        public ObservableCollection<MeasureVar> Obc
+        {
+            get
+            {
+                if (_Obc == null) _Obc = new ObservableCollection<MeasureVar>();
+
+                return _Obc;
+            }
+            set
+            {
+                _Obc = value;
+            }
+        }
+        #endregion
 
         public ProjectData()
         {
             InitializeComponent();
+            global.PropertyChanged += Global_PropertyChanged;
             this.DataContextChanged += ProjectData_DataContextChanged;
+        }
+
+        private void Global_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "OpenedProject")
+            {
+                if (global.OpenedProject != null)
+                {
+                    Obc.Clear();
+                    Obc.Add(new MeasureVar(global.OpenedProject.Var1));
+                    Obc.Add(new MeasureVar(global.OpenedProject.Var2));
+                    Obc.Add(new MeasureVar(global.OpenedProject.Var3));
+                }
+            }
         }
 
         private void ProjectData_DataContextChanged(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
         {
-            {
-            }
+            
         }
 
         private async void Save_Click(object sender, System.Windows.RoutedEventArgs e)

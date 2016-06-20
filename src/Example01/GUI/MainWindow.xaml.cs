@@ -55,12 +55,7 @@ namespace SearchAThing.Sci.GUI.Examples
                 global.OpenedProject = await global.LoadProject();
             }
         }
-
-        private void SciTextBox_ValueChanged(SciTextBox sender, Measure measure)
-        {
-            //logTbox.Text = measure.ToString();
-        }
-
+        
         private void SciTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
             //Console.WriteLine($"measure = [{sciTextBox.Value}]");

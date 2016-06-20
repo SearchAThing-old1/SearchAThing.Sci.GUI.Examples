@@ -58,11 +58,91 @@ namespace SearchAThing.Sci.GUI.Examples
                 if (_A != value)
                 {
                     _A = value;
-                    SendPropertyChanged("A");
+                    SendPropertyChanged("A");                    
+                }
+            }
+        }
+        #endregion
+
+        #region B [propc]
+        Measure _B;
+        public Measure B
+        {
+            get
+            {
+                if (_B == null) _B = new Measure(1.0, MUCollection.Length.mm);
+                return _B;
+            }
+            set
+            {
+                if (_B != value)
+                {
+                    _B = value;
+                    SendPropertyChanged("B");
                 }
             }
         }
         #endregion       
+
+        #region Var1 [propc]
+        Measure _Var1;
+        public Measure Var1
+        {
+            get
+            {
+                if (_Var1 == null) _Var1 = new Measure(1, MUCollection.Force.N);
+                return _Var1;
+            }
+            set
+            {
+                if (_Var1 != value)
+                {
+                    _Var1 = value;
+                    SendPropertyChanged("Var1");
+                }
+            }
+        }
+        #endregion
+
+        #region Var2 [propc]
+        Measure _Var2;
+        public Measure Var2
+        {
+            get
+            {
+                if (_Var2 == null) _Var2 = new Measure(1, MUCollection.Pressure.Pa);
+                return _Var2;
+            }
+            set
+            {
+                if (_Var2 != value)
+                {
+                    _Var2 = value;
+                    SendPropertyChanged("Var2");
+                }
+            }
+        }
+        #endregion
+
+        #region Var3 [propc]
+        Measure _Var3;
+        public Measure Var3
+        {
+            get
+            {
+                if (_Var3 == null) _Var3 = new Measure(1, MUCollection.Time.sec);
+                return _Var3;
+            }
+            set
+            {
+                if (_Var3 != value)
+                {
+                    _Var3 = value;
+                    SendPropertyChanged("Var3");
+                }
+            }
+        }
+        #endregion
 
     }
 
