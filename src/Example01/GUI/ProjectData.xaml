@@ -42,12 +42,12 @@
 
             <Toolkit:DetachableTabItem Header="Data Grid">
                 <Grid>
-                    <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Obc, ElementName=userControl}">
+                    <GUI:SciDataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Obc, ElementName=userControl}">
                         <DataGrid.Columns>
                             <GUI:SciDataGridColumn Header="Measure" 
                                                    Binding="{Binding Path=Measure, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </DataGrid.Columns>
-                    </DataGrid>
+                    </GUI:SciDataGrid>
                 </Grid>
             </Toolkit:DetachableTabItem>
 
